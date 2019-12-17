@@ -1,0 +1,3 @@
+[submodule "expman"]
+	path = expman
+	url = git@github.com:fabiocarrara/expman.git

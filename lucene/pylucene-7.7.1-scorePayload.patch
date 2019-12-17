@@ -1,0 +1,19 @@
+--- ../pylucene-orig/java/org/apache/pylucene/search/similarities/PythonClassicSimilarity.java  2017-12-21 11:03:51.000000000 +0000
++++ ./java/org/apache/pylucene/search/similarities/PythonClassicSimilarity.java 2019-06-21 16:22:26.323940337 +0000
+@@ -15,6 +15,7 @@
+ 
+ package org.apache.pylucene.search.similarities;
+ 
++import org.apache.lucene.util.BytesRef;
+ import org.apache.lucene.search.Explanation;
+ import org.apache.lucene.search.CollectionStatistics;
+ import org.apache.lucene.search.TermStatistics;
+@@ -58,4 +59,7 @@
+     @Override
+     public native Explanation idfExplain(CollectionStatistics collectionStats,
+                                          TermStatistics[] stats);
++    @Override
++    public native float scorePayload(int docId, int start, int end,
++                                     BytesRef payload);
+ }
+

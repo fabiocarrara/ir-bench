@@ -1,24 +1,23 @@
 import numpy as np
 
-k = 2+1
+
+def crelu_perm(a, k):
+    permutation = np.argsort(a)[::-1] + 1  # 1-indexed permutation
+    inverse_permutation = np.argsort(permutation) + 1  # 1-indexed inverse permutation
+    complemented_inverse_permutation = len(a) + 1 - inverse_permutation  # term frequencies
+    truncated_complemented_inverse_permutation = np.maximum(complemented_inverse_permutation - (k+1), 0)
+    return permutation, inverse_permutation, complemented_inverse_permutation, truncated_complemented_inverse_permutation
+
+
+k = 2
 
 q = np.array([-0.4, 0.2, 0.7, -0.1, 0.5])
-pq = np.argsort(q)[::-1] + 1 
-ipq = np.argsort(pq) + 1
-cipq = len(q) + 1 - ipq
-tipq = np.maximum(cipq - k, 0)
-
 x = np.array([0.1, 0.3, 0.4, -0.15, 0.2])
-px = np.argsort(x)[::-1] + 1
-ipx = np.argsort(px) + 1
-cipx = len(x) + 1 - ipx
-tipx = np.maximum(cipx - k, 0)
-
 y = np.array([0.0, -0.8, 0.7, 0.9, 1.2])
-py = np.argsort(y)[::-1] + 1 
-ipy = np.argsort(py) + 1
-cipy = len(y) + 1 - ipy
-tipy = np.maximum(cipy - k, 0)
+
+pq, ipq, cipq, tipq = crelu_perm(q, k)
+px, ipx, cipx, tipx = crelu_perm(x, k)
+py, ipy, cipy, tipy = crelu_perm(y, k)
 
 print(q, x, y)
 print(pq, px, py)

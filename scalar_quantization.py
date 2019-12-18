@@ -26,6 +26,7 @@ def threshold(x, thr, s=0):
     x = fw.fix(s * x).astype(int) if s else x  
     return x
 
+
 if __name__ == '__main__':
 
     thrs = (range(20, 50, 4),

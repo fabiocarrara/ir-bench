@@ -1,0 +1,5 @@
+cluster.name: "docker-cluster"
+network.host: 0.0.0.0
+indices.query.bool.max_clause_count: 5000
+indices.memory.index_buffer_size: 50%
+discovery.type: single-node
